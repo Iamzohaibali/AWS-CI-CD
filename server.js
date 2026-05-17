@@ -21,6 +21,15 @@ app.get("/health", (req, res) => {
   });
 });
 
+app.get("/api/user", (req, res) => {
+  res.json({
+    success: true,
+    ip: req.ip,
+    userAgent: req.get('user-agent'),
+    timestamp: new Date().toISOString()
+  });
+});
+
 app.listen(3000, () => {
   console.log("Server running");
 });
