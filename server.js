@@ -1,6 +1,18 @@
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
+
+/* CORS */
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://zohaib-ahmad-ali.tech",
+    ],
+    credentials: true,
+  })
+);
 
 app.get("/", (req, res) => {
   res.send("Production Backend");
@@ -9,27 +21,16 @@ app.get("/", (req, res) => {
 app.get("/api", (req, res) => {
   res.json({
     success: true,
-    message: "API Working"
+    message: "API Working Successfully",
   });
 });
 
-/* NEW ROUTE */
 app.get("/health", (req, res) => {
   res.json({
     status: "healthy",
-    uptime: process.uptime()
-  });
-});
-
-app.get("/api/user", (req, res) => {
-  res.json({
-    success: true,
-    ip: req.ip,
-    userAgent: req.get('user-agent'),
-    timestamp: new Date().toISOString()
   });
 });
 
 app.listen(3000, () => {
-  console.log("Server running");
+  console.log("Server running on port 3000");
 });
