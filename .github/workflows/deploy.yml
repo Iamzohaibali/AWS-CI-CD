@@ -19,7 +19,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
 
           script: |
-            cd ~/backend
+            cd ~/AWS-CI-CD
 
             git pull origin main
 
